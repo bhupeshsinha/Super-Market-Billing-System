@@ -18,4 +18,6 @@ Super Market Billing System with File Handling and OOPs using C++.
     5. Defined setter and getter funtions inorder to initialize the private data members.
 
     6. 'system("cls"):  this statement clear the previous output and display only the current output'
+
+    7. "File Handling": from 18.00mins
     
