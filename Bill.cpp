@@ -85,7 +85,7 @@ class Bill
                     else{
                         /*now we are storing/writing (ofstream:    writing(output) data in the file) data from data varibles of the class into the file*/
                         out<<"\t"<<b.getItem()<<" : "<<b.getRate()<<" : "<<b.getQuantity()<<endl<<endl;
-                        cout<<"\t"<<b.getItem()<<" : "<<b.getRate()<<" : "<<b.getQuantity()<<endl<<endl;
+                        cout<<"\t "<<b.getItem()<<" : "<<b.getRate()<<" : "<<b.getQuantity()<<endl<<endl;
                     }
 
                     out.close();    //closed the file
@@ -96,8 +96,8 @@ class Bill
                 system("cls");
                 close=true;
 
-                cout<<"\t Back to Main Menu!"<<endl;
-                Sleep(4000);
+                cout<<"\tPlease wait, Back to Main Menu!"<<endl;
+                Sleep(3000);
             }
         }
     }
@@ -165,7 +165,7 @@ void printBill()
                     }
 
                 }else{
-                        out<<line<<; 
+                        out<<line<<endl; 
                 }
             }
              
@@ -178,7 +178,7 @@ void printBill()
         in.close(); 
 
         remove("E:/CPP(MB Academy)/Super-Market-Billing-System/Bill.txt");
-        rename("E:/CPP(MB Academy)/Super-Market-Billing-System/Bill_Temp.txt", "E:/CPP(MB Academy)/Super-Market-Billing-System/Bill.txt")
+        rename("E:/CPP(MB Academy)/Super-Market-Billing-System/Bill_Temp.txt", "E:/CPP(MB Academy)/Super-Market-Billing-System/Bill.txt");
 
         }else if( choice == 2)
         {
