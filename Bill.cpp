@@ -228,7 +228,9 @@ int main()
         }
         else
         {
-
+                system("cls");
+                exit=true;
+                cout<<"Thank You, Have a good day"<<endl;
         }
     }
 
