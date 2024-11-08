@@ -102,7 +102,99 @@ class Bill
         }
     }
 
+void printBill()
+{
+    system("cls");
+    int count = 0;
+    bool close = false;
 
+    while(!close)
+    {
+        system("cls");
+        int choice;
+
+        cout<<"\t1. Add Bill."<<endl;
+        cout<<"\t2. End Session."<<endl;
+        cout<<"\tEnter Choice ";
+        cin>>choice;
+
+        if(choice == 1)
+        {
+            string item;
+            int rate, quantity;
+
+            cout<<"\tEnter Item: ";
+            cin>>item;
+            cout<<"\tEnter Quantity: ";
+            cin>>quantity;
+
+            ifstream in("E:/CPP(MB Academy)/Super-Market-Billing-System/Bill.txt");      //To READ data from the file:  file from which we will perform read oprtn inorder to generate the final bill
+            ofstream out("E:/CPP(MB Academy)/Super-Market-Billing-System/Bill_Temp.txt");     //to WRITE data in the file:    
+
+            string line;    //store the string data that is now stored in "in()" file
+            bool found = false;
+
+            while(getline(in, line))    //Read from :in and Write to :line
+            {
+                stringstream ss;
+                ss<<line;
+
+                string itemName;
+                int itemRate, itemQuantity;
+                char delimiter;
+
+                ss>>itemName>>delimiter>>itemRate>>delimiter>>itemQuantity;
+
+                if(item == itemName)
+                {
+                    found = true;
+                    if(quantity <= itemQuantity)
+                    {
+                        int amount = itemRate * quantity;
+                        cout<<"\tItem | Rate | Quantity | Amount"<<endl;
+                        cout<<"\t"<<itemName<<"\t "<<itemRate<<"\t "<<itemQuantity<<"\t "<<amount<<endl;
+
+                        int newQuantity = itemQuantity - quantity;
+                        itemQuantity = newQuantity;
+
+                        count+=amount;
+                        out<<"\t"<<itemName<<" : "<<itemRate<<" : "<<itemQuantity<<endl<<endl;
+                    }
+                    else{
+                         cout<<"\tSorry!,"<<itemName<<" It's Out of Stock. We have only "<<itemQuantity<<" remaining"<<endl;
+                    }
+
+                }else{
+                        out<<line<<; 
+                }
+            }
+             
+        if(!found)  
+        {
+            cout<<"\tOoops!, Item Not Available!!"<<endl;
+        }
+
+        out.close();
+        in.close(); 
+
+        remove("E:/CPP(MB Academy)/Super-Market-Billing-System/Bill.txt");
+        rename("E:/CPP(MB Academy)/Super-Market-Billing-System/Bill_Temp.txt", "E:/CPP(MB Academy)/Super-Market-Billing-System/Bill.txt")
+
+        }else if( choice == 2)
+        {
+            close=true;
+            cout<<"\tWait, Bill is generating"<<endl;
+            
+        }
+        Sleep(3000);
+    }
+
+    system("cls");
+    cout<<endl<<endl;
+    cout<<"\t Total Bill is:\t"<<count<<endl<<endl;
+    cout<<"\t Thanks for Shopping!, Please visit Again!!"<<endl;
+    Sleep(5000);
+}
 
 int main()
 {
@@ -125,12 +217,16 @@ int main()
 
 
         if(val == 1)
-        {
+        {   
+            system("cls");
             addItem(b);
-        }else if(val == 2)
+            Sleep(4000);
+        }
+        else if(val == 2)
         {
-
-        }else
+            printBill();
+        }
+        else
         {
 
         }
